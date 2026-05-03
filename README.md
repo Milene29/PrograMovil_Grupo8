@@ -1,26 +1,22 @@
-## Entorno de Desarrollo
+# Entorno de Desarrollo
 
-El proyecto ULima Café ha sido desarrollado utilizando un entorno moderno orientado al desarrollo de aplicaciones móviles.
+El presente proyecto consiste en el desarrollo de una aplicación móvil **_Ulima Café_**, orientada a la **gestión de pedidos** en la cafetería de la Universidad de Lima.
 
-###   Herramientas utilizadas
-- **Figma**
-  Herramienta de diseño utilizada para la creación de los mockups de la aplicación.
+La aplicación permitirá a los usuarios **visualizar el catálogo de productos**, **personalizar sus pedidos**, gestionarlos mediante un **carrito de compras** y realizar pagos a través de **métodos digitales**.
 
-- **GitHub**
-  Plataforma de control de versiones para gestionar el código fuente del proyecto.
+Asimismo, el sistema incluirá funcionalidades como el **seguimiento del estado del pedido en tiempo real**, **historial de compras**, **notificaciones** y gestión de **preferencias del usuario**, con el objetivo de **mejorar la experiencia de compra** y **optimizar el proceso de atención** en la cafetería.
 
+La solución será desarrollada utilizando **tecnologías móviles modernas**, garantizando una interfaz **intuitiva**, un sistema **eficiente** y una arquitectura **escalable**.
 
-## Requerimientos No Funcionales
+## [Herramientas Utilizadas](Documentación/Herramientas.md)
 
-- **Disponibilidad:** El sistema debe estar disponible 24/7 para los estudiantes.
-- **Rendimiento:** El tiempo de carga de la app no debe superar los 3 segundos.
-- **Seguridad:** Autenticación mediante código universitario.
-- **Usabilidad:** Interfaz intuitiva basada en los mockups diseñados en Figma.
-- **Escalabilidad:** El sistema debe soportar múltiples usuarios concurrentes.
-- **Compatibilidad:** Disponible para dispositivos Android.
-- **Mantenibilidad:** Código estructurado y versionado con GitHub.
+- Flutter
+- Android Studio
+- Figma
+- Github
+- DB
 
-##  Diagrama de Despliegue
+## [Diagrama de Despliegue](Documentación/Diag_Despliegue.md)
 
 El sistema ULima Café está compuesto por:
 
@@ -29,122 +25,44 @@ El sistema ULima Café está compuesto por:
 - **Base de datos (MySQL / Firebase)**
 - **Servicios externos (Pagos QR, Notificaciones)**
 
+## [Requerimientos No Funcionales](Documentación/NoFuncionales_Req.md)
 
-## Casos de Uso del Sistema
+- Operacional (disponibilidad, rendimiento)
+- Seguridad
+- Usabilidad
+- Eficiencia
+- Mantenibilidad
+- Portabilidad / Compatibilidad
+- Confiabilidad
+- Escalabilidad
 
+## [Requerimientos Funcionales / Casos de Uso](Documentación/Funcionales_Req.md)
 
-### CU-01: Explorar y buscar productos
+- CU-01: Registrarse / Iniciar sesión  
+- CU-02: Explorar Productos  
+- CU-03: Ver Detalle de Producto  
+- CU-04: Personalizar Producto  
+- CU-05: Gestionar Carrito  
+- CU-06: Realizar Pedido  
+- CU-07: Realizar Pago  
+- CU-08: Consultar Estado del Pedido  
+- CU-09: Ver Historial de Pedidos  
+- CU-10: Recibir Notificaciones  
+- CU-11: Gestionar Favoritos  
+- CU-12: Calificar Producto  
+- CU-13: Consultar Promociones  
+- CU-14: Seleccionar Cafetería  
+- CU-15: Ver Disponibilidad de Productos  
+- CU-16: Gestionar Productos  
+- CU-17: Actualizar Estado de Pedido  
+- CU-18: Gestionar Promociones
 
-**Actor:** Usuario  
-**Descripción:**  
-El usuario ingresa a la sección de inicio y visualiza el catálogo de bebidas disponibles. Puede navegar por categorías o usar un buscador para encontrar un producto específico.  
+## [Mockups](https://swore-almond-57432696.figma.site/)
 
-**Funcionalidades:**
-- Visualización de productos
-- Filtros por categoría
-- Búsqueda por nombre
-
-**Salida del sistema:**
-- Nombre del producto
-- Descripción
-- Precio base
-- Imagen
-
----
-
-### CU-02: Personalizar producto
-
-**Actor:** Usuario  
-**Descripción:**  
-Al seleccionar un producto, el usuario accede a una pantalla de personalización donde puede elegir diferentes opciones.
-
-**Opciones disponibles:**
-- Tamaño (pequeño, mediano, grande)
-- Nivel de azúcar
-- Tipo de leche (entera, descremada, vegetal)
-- Toppings adicionales
-
-**Comportamiento del sistema:**
-- Actualización del precio en tiempo real según selección
-
----
-
-### CU-03: Gestionar carrito de compras
-
-**Actor:** Usuario  
-**Descripción:**  
-El usuario puede administrar los productos agregados al carrito.
-
-**Funcionalidades:**
-- Agregar productos
-- Modificar cantidad
-- Editar personalización
-- Eliminar productos
-
-**Salida del sistema:**
-- Subtotal actualizado
-- Resumen detallado de cada producto
-
----
-
-### CU-04: Realizar pedido y pago
-
-**Actor:** Usuario  
-**Descripción:**  
-El usuario revisa el pedido y realiza el pago.
-
-**Métodos de pago:**
-- Efectivo
-- Tarjeta
-- Billetera digital (Yape, Plin, etc.)
-
-**Flujo:**
-1. Revisar resumen
-2. Seleccionar método de pago
-3. Confirmar pago
-
-**Salida del sistema:**
-- Registro del pedido
-- Código de seguimiento
-
----
-
-### CU-05: Consultar historial de pedidos
-
-**Actor:** Usuario  
-**Descripción:**  
-Permite visualizar pedidos anteriores y actuales.
-
-**Información mostrada:**
-- Productos
-- Personalización
-- Total pagado
-- Fecha
-- Estado (en preparación, listo, entregado)
-
----
-
-### CU-06: Registrarse e iniciar sesión
-
-**Actor:** Usuario  
-**Descripción:**  
-Permite crear una cuenta o acceder al sistema.
-
-**Datos requeridos:**
-- Correo institucional
-- Nombre
-- Código universitario
-
-**Beneficios:**
-- Historial de pedidos
-- Guardado de preferencias
-- Acceso desde cualquier dispositivo
-
-- Ver menú
-- Filtrar productos
-- Ver detalle de producto
-- Agregar al carrito
-- Realizar pedido
-- Seleccionar método de pago
-- Pagar con QR
-- Ver historial de pedidos
+- [Login](https://swore-almond-57432696.figma.site/)
+- [Menú](https://swore-almond-57432696.figma.site/menu)
+- [Carrito](https://swore-almond-57432696.figma.site/cart)
+- [Historial de Órdenes](https://swore-almond-57432696.figma.site/my-orders)
+- [Vista de Producto](https://swore-almond-57432696.figma.site/product/8)
+- [Checkout](https://swore-almond-57432696.figma.site/checkout)
+- [Estatus de Orden](https://swore-almond-57432696.figma.site/order-confirmation/ORD-1777763589695)
