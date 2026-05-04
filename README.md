@@ -66,4 +66,4 @@ El sistema ULima Café está compuesto por:
 - [Vista de Producto](https://swore-almond-57432696.figma.site/product/8)
 - [Checkout](https://swore-almond-57432696.figma.site/checkout)
 - [Estatus de Orden](https://swore-almond-57432696.figma.site/order-confirmation/ORD-1777763589695)
-[Link figma:](https://www.figma.com/design/Vftvg3IUaxDZmArqEryYWA/Cafeter%C3%ADa-Universal-I-Ulima?node-id=0-1&t=CHmzXso4rMqtN5yp-1)
+- [Link figma:](https://www.figma.com/design/Vftvg3IUaxDZmArqEryYWA/Cafeter%C3%ADa-Universal-I-Ulima?node-id=0-1&t=CHmzXso4rMqtN5yp-1)
