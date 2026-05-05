@@ -1,10 +1,10 @@
-# 🛠️ Herramientas de Desarrollo
+#  Herramientas de Desarrollo
 
 En este proyecto se utilizarán diversas herramientas para el desarrollo, diseño, pruebas y gestión del código de la aplicación móvil.
 
 ---
 
-## 🔵 Flutter
+##  Flutter
 
 ![flutter](Screenshots/image.png)
 
@@ -22,7 +22,7 @@ En este proyecto se utilizarán diversas herramientas para el desarrollo, diseñ
    flutter doctor
    ```
 
-## 📱 Android Studio
+##  Android Studio
 
 ![android studio](Screenshots/image-1.png)
 
@@ -39,7 +39,7 @@ En este proyecto se utilizarán diversas herramientas para el desarrollo, diseñ
 4. Crear un dispositivo virtual (AVD).
 
 
-## 🎨 Figma
+##  Figma
 
 ![figma](Screenshots/image-2.png)
 
@@ -55,7 +55,7 @@ En este proyecto se utilizarán diversas herramientas para el desarrollo, diseñ
 4. Crear un nuevo archivo de diseño (Design File).  
 5. Empezar a diseñar las pantallas de la aplicación.
 
-## 🌐 GitHub
+##  GitHub
 
 ![github](Screenshots/image-3.png)
 
@@ -78,4 +78,4 @@ En este proyecto se utilizarán diversas herramientas para el desarrollo, diseñ
 4. Hacer clic en **"Commit to main"**.  
 5. Presionar **"Push origin"** para subir los cambios a GitHub.
 
-## 🚀 Base de Datos
+##  Base de Datos
