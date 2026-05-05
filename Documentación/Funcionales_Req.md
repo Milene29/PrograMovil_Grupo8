@@ -123,7 +123,7 @@
 ---
 ---
 
-## 👨‍💼 Actor: Administrador / Cafetería
+## Actor: Administrador / Cafetería
 
 ### CU-16: Gestionar Productos
 **Descripción:** Permite administrar los productos disponibles en la cafetería.
