@@ -25,7 +25,7 @@ Esta arquitectura permite cumplir con los requisitos no funcionales como disponi
 
 -  **Servicios Externos** 
 
-## Diagrama
+## Diagrama de base de datos
 
 ![DiagramaDespliegue](Screenshots/image-4.png)
 
