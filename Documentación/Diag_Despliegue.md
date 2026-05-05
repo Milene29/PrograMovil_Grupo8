@@ -1,4 +1,4 @@
-# 📡 Diagrama de Despliegue
+#  Diagrama de Despliegue
 
 ## Descripción General
 
@@ -14,16 +14,16 @@ Esta arquitectura permite cumplir con los requisitos no funcionales como disponi
 
 ## Componentes del Sistema
 
-- 📱 **Dispositivo Móvil (Usuario)**  
+-  **Dispositivo Móvil (Usuario)**  
   Ejecuta la aplicación Flutter y permite la interacción con el sistema.
 
-- ☁️ **Backend (Servidor / Firebase)**  
+-  **Backend (Servidor / Firebase)**  
   Procesa solicitudes, gestiona la lógica de negocio y maneja la comunicación con la base de datos.
 
-- 🗄️ **Base de Datos (Firestore)**  
+-  **Base de Datos (Firestore)**  
   Almacena información de usuarios, pedidos, productos y demás entidades.
 
-- 🔔 **Servicios Externos** 
+-  **Servicios Externos** 
 
 ## Diagrama
 
@@ -37,7 +37,7 @@ hide circle
 skinparam linetype ortho
 
 ' =========================
-' 👤 USUARIO
+'  USUARIO
 ' =========================
 entity "Usuario" as usuario {
   * id_usuario : INTEGER <<PK>>
@@ -55,7 +55,7 @@ entity "Usuario" as usuario {
 }
 
 ' =========================
-' 🏪 CAFETERIA
+'  CAFETERIA
 ' =========================
 entity "Cafeteria" as cafeteria {
   * id_cafeteria : INTEGER <<PK>>
@@ -71,7 +71,7 @@ entity "Cafeteria" as cafeteria {
 }
 
 ' =========================
-' 📂 CATEGORIA
+'  CATEGORIA
 ' =========================
 entity "Categoria" as categoria {
   * id_categoria : INTEGER <<PK>>
@@ -82,7 +82,7 @@ entity "Categoria" as categoria {
 }
 
 ' =========================
-' 🛍️ PRODUCTO
+'  PRODUCTO
 ' =========================
 entity "Producto" as producto {
   * id_producto : INTEGER <<PK>>
@@ -100,7 +100,7 @@ entity "Producto" as producto {
 }
 
 ' =========================
-' 📦 PEDIDO
+'  PEDIDO
 ' =========================
 entity "Pedido" as pedido {
   * id_pedido : INTEGER <<PK>>
@@ -116,7 +116,7 @@ entity "Pedido" as pedido {
 }
 
 ' =========================
-' 💳 PAGO (NUEVO 🔥)
+'  PAGO (NUEVO )
 ' =========================
 entity "Pago" as pago {
   * id_pago : INTEGER <<PK>>
@@ -129,7 +129,7 @@ entity "Pago" as pago {
 }
 
 ' =========================
-' 📄 DETALLE PEDIDO
+'  DETALLE PEDIDO
 ' =========================
 entity "DetallePedido" as detalle_pedido {
   * id_detalle : INTEGER <<PK>>
@@ -142,7 +142,7 @@ entity "DetallePedido" as detalle_pedido {
 }
 
 ' =========================
-' ⭐ FAVORITOS
+'  FAVORITOS
 ' =========================
 entity "Favorito" as favorito {
   * id_favorito : INTEGER <<PK>>
@@ -153,7 +153,7 @@ entity "Favorito" as favorito {
 }
 
 ' =========================
-' 🔔 NOTIFICACIONES
+'  NOTIFICACIONES
 ' =========================
 entity "Notificacion" as notificacion {
   * id_notificacion : INTEGER <<PK>>
@@ -167,7 +167,7 @@ entity "Notificacion" as notificacion {
 }
 
 ' =========================
-' 💸 PROMOCION
+'  PROMOCION
 ' =========================
 entity "Promocion" as promocion {
   * id_promocion : INTEGER <<PK>>
@@ -182,7 +182,7 @@ entity "Promocion" as promocion {
 }
 
 ' =========================
-' 📝 RESEÑA
+'  RESEÑA
 ' =========================
 entity "Resena" as resena {
   * id_resena : INTEGER <<PK>>
@@ -196,7 +196,7 @@ entity "Resena" as resena {
 }
 
 ' =========================
-' 🔗 RELACIONES
+'  RELACIONES
 ' =========================
 usuario ||--o{ pedido : realiza
 usuario ||--o{ favorito : tiene
