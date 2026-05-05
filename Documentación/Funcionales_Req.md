@@ -1,6 +1,6 @@
-# 📋 Requerimientos Funcionales - Casos de Uso
+#  Requerimientos Funcionales - Casos de Uso
 
-## 👤 Actor Principal: Usuario
+##  Actor Principal: Usuario
 
 ### CU-01: Registrarse / Iniciar sesión
 **Descripción:** Permite al usuario crear una cuenta o acceder al sistema.  
