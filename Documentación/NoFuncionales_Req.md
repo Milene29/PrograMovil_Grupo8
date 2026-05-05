@@ -1,4 +1,4 @@
-# ✏️ Requisitos No Funcionales
+#  Requisitos No Funcionales
 
 | ID | Nombre | Descripción | Criterio de Aceptación | Prioridad | Fuente |
 |----|--------|------------|------------------------|----------|--------|
