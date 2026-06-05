@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 
 import 'pages/login/login_page.dart';
 import 'pages/menu/menu_page.dart';
-import 'pages/procesar_pago/pagar_qr.dart';
-import 'pages/procesar_pago/procesar_pago.dart';
+import 'pages/pickup_order/pickup_order_page.dart';
 
 void main() {
   runApp(const MyApp());
