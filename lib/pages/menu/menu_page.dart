@@ -5,8 +5,10 @@ import '../carrito/cart_controller.dart';
 import '../carrito/cart_page.dart';
 import '../product_detail/product_detail_page.dart';
 import 'menu_controller.dart' as app;
+import '../procesar_pago/procesar_pago.dart';
 
 class MenuPage extends StatelessWidget {
+  
   final app.MenuController control = Get.put(app.MenuController());
 
   // CartController registrado aquí para que viva durante toda la sesión
@@ -24,7 +26,7 @@ class MenuPage extends StatelessWidget {
             child: CircularProgressIndicator(color: Color(0xFF7A0C2E)),
           );
         }
-
+        
         return Column(
           children: [
             _buildHeader(context),
@@ -50,6 +52,13 @@ class MenuPage extends StatelessWidget {
         );
       }),
       bottomNavigationBar: _buildBottomNavigationBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const ConfirmarPedidoPage());
+        },
+      backgroundColor: const Color(0xFF7A0C2E),
+      child: const Icon(Icons.shopping_cart_checkout),
+      ),
     );
   }
 
@@ -74,7 +83,7 @@ class MenuPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hola, Salvador',
+                    'Hola, $usuarioNombre',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
