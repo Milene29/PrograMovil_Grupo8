@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'pages/login/login_page.dart';
 import 'pages/menu/menu_page.dart';
 
 void main() {
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: MenuPage(),
+      home: LoginPage(),
     );
   }
 }
