@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../models/product.dart';
 import '../product_detail/product_detail_page.dart';
 import 'menu_controller.dart' as app;
+import '../procesar_pago/procesar_pago.dart';
 
 class MenuPage extends StatelessWidget {
   
@@ -22,7 +23,7 @@ class MenuPage extends StatelessWidget {
             child: CircularProgressIndicator(color: Color(0xFF7A0C2E)),
           );
         }
-
+        
         return Column(
           children: [
             _buildHeader(context),
@@ -48,6 +49,13 @@ class MenuPage extends StatelessWidget {
         );
       }),
       bottomNavigationBar: _buildBottomNavigationBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const ConfirmarPedidoPage());
+        },
+      backgroundColor: const Color(0xFF7A0C2E),
+      child: const Icon(Icons.shopping_cart_checkout),
+      ),
     );
   }
 
