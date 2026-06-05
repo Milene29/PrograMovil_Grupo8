@@ -5,9 +5,12 @@ import '../product_detail/product_detail_page.dart';
 import 'menu_controller.dart' as app;
 
 class MenuPage extends StatelessWidget {
+  
   final app.MenuController control = Get.put(app.MenuController());
 
-  MenuPage({super.key});
+  final String usuarioNombre;
+
+  MenuPage({super.key, required this.usuarioNombre});
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +74,9 @@ class MenuPage extends StatelessWidget {
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children:  [
                   Text(
-                    'Hola, Salvador',
+                    'Hola, $usuarioNombre',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
