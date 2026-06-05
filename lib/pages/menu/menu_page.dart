@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/product.dart';
+import '../carrito/cart_controller.dart';
+import '../carrito/cart_page.dart';
 import '../product_detail/product_detail_page.dart';
 import 'menu_controller.dart' as app;
 
 class MenuPage extends StatelessWidget {
   final app.MenuController control = Get.put(app.MenuController());
+
+  // CartController registrado aquí para que viva durante toda la sesión
+  final CartController cartControl = Get.put(CartController());
 
   MenuPage({super.key});
 
@@ -58,10 +63,6 @@ class MenuPage extends StatelessWidget {
       ),
       decoration: const BoxDecoration(
         color: Color(0xFF7A0C2E),
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(0),
-          bottomRight: Radius.circular(0),
-        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,9 +70,9 @@ class MenuPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Hola, Salvador',
                     style: TextStyle(
@@ -87,27 +88,54 @@ class MenuPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(38),
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    color: Colors.white,
+              // ── Ícono carrito con badge ──────────────
+              Obx(() {
+                final count = cartControl.totalItems;
+                return GestureDetector(
+                  onTap: () => Get.to(() => CartPage()),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withAlpha(38),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => Get.to(() => CartPage()),
+                        ),
+                        if (count > 0)
+                          Positioned(
+                            right: 4,
+                            top: 4,
+                            child: Container(
+                              width: 18,
+                              height: 18,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '$count',
+                                  style: const TextStyle(
+                                    color: Color(0xFF7A0C2E),
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-                  onPressed: () {
-                    Get.snackbar(
-                      'Carrito',
-                      'Funcionalidad de Carrito en desarrollo (Solo Front)',
-                      backgroundColor: Colors.white,
-                      colorText: const Color(0xFF7A0C2E),
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                ),
-              ),
+                );
+              }),
             ],
           ),
           const SizedBox(height: 20),
@@ -180,10 +208,10 @@ class MenuPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Row(
-            children: const [
+            children: [
               Icon(Icons.auto_awesome, color: Color(0xFF7A0C2E), size: 18),
               SizedBox(width: 6),
               Text(
@@ -218,9 +246,7 @@ class MenuPage extends StatelessWidget {
 
   Widget _buildRecommendedCard(BuildContext context, Product product) {
     return GestureDetector(
-      onTap: () {
-        Get.to(() => ProductDetailPage(), arguments: product);
-      },
+      onTap: () => Get.to(() => ProductDetailPage(), arguments: product),
       child: Container(
         width: 150,
         margin: const EdgeInsets.only(left: 6, right: 6, bottom: 8),
@@ -239,15 +265,14 @@ class MenuPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
-              ),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
               child: Image.network(
                 product.image,
                 height: 110,
                 width: 150,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+                errorBuilder: (_, __, ___) => Container(
                   color: Colors.grey.shade200,
                   height: 110,
                   child: const Icon(Icons.coffee, size: 40, color: Colors.grey),
@@ -264,9 +289,7 @@ class MenuPage extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                    ),
+                        fontWeight: FontWeight.w600, fontSize: 13),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -290,8 +313,8 @@ class MenuPage extends StatelessWidget {
     final activeCategoryName = control.selectedCategoryId.value == 0
         ? 'Todos los Productos'
         : control.categories
-              .firstWhere((cat) => cat.id == control.selectedCategoryId.value)
-              .name;
+            .firstWhere((cat) => cat.id == control.selectedCategoryId.value)
+            .name;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -322,16 +345,11 @@ class MenuPage extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  Icon(
-                    Icons.coffee_outlined,
-                    size: 64,
-                    color: Colors.grey.shade300,
-                  ),
+                  Icon(Icons.coffee_outlined,
+                      size: 64, color: Colors.grey.shade300),
                   const SizedBox(height: 12),
-                  Text(
-                    'No se encontraron productos',
-                    style: TextStyle(color: Colors.grey.shade500),
-                  ),
+                  Text('No se encontraron productos',
+                      style: TextStyle(color: Colors.grey.shade500)),
                 ],
               ),
             )
@@ -352,9 +370,7 @@ class MenuPage extends StatelessWidget {
 
   Widget _buildProductListItem(BuildContext context, Product product) {
     return GestureDetector(
-      onTap: () {
-        Get.to(() => ProductDetailPage(), arguments: product);
-      },
+      onTap: () => Get.to(() => ProductDetailPage(), arguments: product),
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(12),
@@ -378,7 +394,7 @@ class MenuPage extends StatelessWidget {
                 width: 72,
                 height: 72,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+                errorBuilder: (_, __, ___) => Container(
                   color: Colors.grey.shade200,
                   width: 72,
                   height: 72,
@@ -394,9 +410,7 @@ class MenuPage extends StatelessWidget {
                   Text(
                     product.name,
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -404,10 +418,7 @@ class MenuPage extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 12,
-                      height: 1.3,
-                    ),
+                        color: Colors.grey.shade600, fontSize: 12, height: 1.3),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -423,18 +434,13 @@ class MenuPage extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.access_time,
-                            size: 14,
-                            color: Colors.grey.shade400,
-                          ),
+                          Icon(Icons.access_time,
+                              size: 14, color: Colors.grey.shade400),
                           const SizedBox(width: 4),
                           Text(
                             product.prepTime,
                             style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.grey.shade500,
-                            ),
+                                fontSize: 11, color: Colors.grey.shade500),
                           ),
                         ],
                       ),
@@ -457,7 +463,8 @@ class MenuPage extends StatelessWidget {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       onTap: (index) {
-        if (index != 0) {
+        if (index == 1) Get.to(() => CartPage());
+        if (index == 2) {
           Get.snackbar(
             'Navegación',
             'Pantalla en desarrollo (Solo Front)',
