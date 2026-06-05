@@ -9,12 +9,16 @@ import '../procesar_pago/procesar_pago.dart';
 
 class MenuPage extends StatelessWidget {
   
+  final String usuarioNombre;
+
   final app.MenuController control = Get.put(app.MenuController());
 
   // CartController registrado aquí para que viva durante toda la sesión
-  final CartController cartControl = Get.put(CartController());
-
-  MenuPage({super.key});
+  final CartController cartControl = Get.find<CartController>();
+  
+  MenuPage({
+    super.key,
+    required this.usuarioNombre});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +83,7 @@ class MenuPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
+               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(

@@ -40,7 +40,6 @@ class CartController extends GetxController {
   int get totalItems => entries.fold(0, (sum, e) => sum + e.quantity.value);
 
   // ── Agregar producto ─────────────────────────
-  /// Llamado desde ProductDetailPage al presionar "Agregar"
   void addFromDetail({
     required Product product,
     required String selectedSize,
@@ -49,7 +48,6 @@ class CartController extends GetxController {
     required double unitPrice,
     required int quantity,
   }) {
-    // Si ya existe la misma combinación, solo sube la cantidad
     final existing = entries.firstWhereOrNull(
       (e) =>
           e.product.id == product.id &&
@@ -74,7 +72,7 @@ class CartController extends GetxController {
       'Carrito',
       '${product.name} agregado al carrito',
       backgroundColor: const Color(0xFF7A0C2E),
-      colorText: const Color(0xFFFFFFFF),
+      colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 2),
     );
