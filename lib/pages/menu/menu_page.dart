@@ -284,7 +284,7 @@ class MenuPage extends StatelessWidget {
                 height: 110,
                 width: 150,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
+                errorBuilder: (_, _, _) => Container(
                   color: Colors.grey.shade200,
                   height: 110,
                   child: const Icon(Icons.coffee, size: 40, color: Colors.grey),
@@ -406,7 +406,7 @@ class MenuPage extends StatelessWidget {
                 width: 72,
                 height: 72,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
+                errorBuilder: (_, _, _) => Container(
                   color: Colors.grey.shade200,
                   width: 72,
                   height: 72,

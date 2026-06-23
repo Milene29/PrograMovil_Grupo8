@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:5000/apis
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczOTQ2MDA2OSwianRpIjoiOWZkNzViZDUtNTMxOS00ZTcxLThhYmYtMDY5NzI3NDNiNDgzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IlVTRVIxIiwibmJmIjoxNzM5NDYwMDY5LCJjc3JmIjoiNDU5YzBmMDItYzQzNS00MjQyLWFhOTktYjg0YjM1NmE3NGRjIiwiZXhwIjoxNzM5NDYxODY5fQ.XTgYN5XUgJtRjL5ghSI9M3H-gDGdGSxSFSQdZ0klOXU
+
+### Login usuario 1
+POST {{baseUrl}}/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "jlopez",
+  "password": "123456"
+}

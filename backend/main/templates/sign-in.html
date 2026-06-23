@@ -1,0 +1,56 @@
+{% extends './_blank.html' %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="col-md-4">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+    <!-- Formulario de login -->
+    <form method="POST" action="/sign-in">
+      <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="username" id="txtUsername" placeholder="Ingresa tu usuario" required>
+      </div>
+      <div class="mb-3">
+        <label for="contraseña" class="form-label">Contraseña</label>
+        <input type="password" name="password" class="form-control" id="txtPassword" placeholder="Ingresa tu contraseña" required>
+      </div>
+        {% if locals['message'] != '' %}
+        <div class="alert alert-danger" role="alert">
+          {{locals['message']}}
+        </div>
+        {% endif %}
+      <button id="btnSignIn" type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var button = document.getElementById('btnSignIn');
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        var user = document.getElementById('txtUsername').value;
+        var password = document.getElementById('txtPassword').value;
+        axios.post('/api/sign-in', {
+          username: user,
+          password: password,
+        }).then(function(response) {
+          // Manejo de la respuesta exitosa
+          console.log(response)
+          if (response.data) {
+            console.log(response.data);
+            localStorage.setItem('jwtToken', response.data.message);  // Guardar el token en el almacenamiento local
+            window.location.href = '/admin';  // Redireccionar al usuario
+          } else {
+            throw new Error('No se recibió token');
+          }
+        }).catch(function(error) {
+          // Manejo de errores
+          console.error('Error:', error);
+        });
+      });
+  });
+</script>  
+{% endblock %}
+

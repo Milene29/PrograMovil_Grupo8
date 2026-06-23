@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:5000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczOTQ2OTgzMCwianRpIjoiZjZlMjA1NjctMzI3OS00NTQ2LTkyMDItZjRkYzhmYmVlMDI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IlVTRVIxIiwibmJmIjoxNzM5NDY5ODMwLCJjc3JmIjoiNjFjNzRiMDAtMjE0Ni00MzgxLWEwNDktZDAyNWI2ZTZjNjJiIiwiZXhwIjoxNzM5NDcxNjMwfQ.1-w95tPfgIESwXENXrFp63zY1IhdQy31ouknPLtp--4
+
+### Obtener la lista de usuarios
+GET {{baseUrl}}/admin/users
+Authorization: Bearer {{token}}
+
+### Obtener usuario por id
+GET {{baseUrl}}/admin/users/1
+
+### Borrar usuario por id
+DELETE {{baseUrl}}/admin/users/35
+
+### Crear un nuevo usuario
+POST {{baseUrl}}/admin/users
+Content-Type: application/json
+
+{
+  "user_name": "USER42",
+  "password": "PASS42",
+  "member_id": 101
+}
+
+### Actualizar usuario
+PUT {{baseUrl}}/admin/users
+Content-Type: application/json
+
+{
+  "id": 41,
+  "user_name": "U41",
+  "password": "P41",
+  "member_id": 100
+}

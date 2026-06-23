@@ -37,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
         codigo,
       );
 
+      if (!mounted) return;
+
       if (usuario != null) {
         SessionService.usuarioNombre = usuario['nombre'];
         Navigator.push(

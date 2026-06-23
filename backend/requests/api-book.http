@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:5000/apis
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4MTYxNjQzNSwianRpIjoiYjc3YzEyY2YtMWE1OC00MmZlLWIyZGYtM2U2N2RlZDA5Mzc4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Impsb3BleiIsIm5iZiI6MTc4MTYxNjQzNSwiY3NyZiI6ImM4NjJmMTA4LTFiMGQtNDQzYy04ZDAwLTUxYjZkNTQzYmJmMyIsImV4cCI6MTc4MTYxNzMzNSwidXNlcl9pZCI6MX0.T1vlVNlEFIjVLLjBtOGuTKQK2JjyGxmsM17OfBBI4-M
+
+### Obtener la lista de libros
+GET {{baseUrl}}/v1/books
+Authorization: Bearer {{token}}
+
+### Obtener la lista de libros
+GET {{baseUrl}}/v1/books?genres=9,6
+Authorization: Bearer {{token}}
+

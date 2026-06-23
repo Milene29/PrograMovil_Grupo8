@@ -1,0 +1,19 @@
+{% extends './_website.html' %}
+{% block content %}
+  <div class="video-container">
+    <!-- Video de fondo -->
+    <video class="video-background" autoplay muted loop>
+      <source src="/video/vegueta.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de videos.
+    </video>
+
+    <!-- Capa de contenido sobre el video -->
+    <div class="content-overlay">
+      <div>
+        <h1 class="display-4">Bienvenido a Nuestro Sitio</h1>
+        <p class="lead">Explora y descubre contenido increíble mientras disfrutas de este fondo visual.</p>
+        <a href="#" class="btn btn-primary">Explorar Más</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

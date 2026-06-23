@@ -1,0 +1,141 @@
+{% extends './_website.html' %}
+{% block content %}
+<!-- slider -->
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <!-- Indicadores -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Contenido del slider -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/img/img01.jpeg" class="d-block w-100" alt="Imagen 1">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Imagen 1</h5>
+        <p>Descripción breve de la primera imagen.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/img/img02.jpeg" class="d-block w-100" alt="Imagen 2">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Imagen 2</h5>
+        <p>Descripción breve de la segunda imagen.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/img/img03.jpeg" class="d-block w-100" alt="Imagen 3">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Imagen 3</h5>
+        <p>Descripción breve de la tercera imagen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de navegación -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+<!-- info -->
+<div class="container my-5">
+  <div class="row align-items-center">
+    <!-- Columna Izquierda -->
+    <div class="col-md-6">
+      <h1 class="display-5" id="titulo">Título de la Sección</h1>
+      <p class="lead">
+        Este es un texto de ejemplo que puedes personalizar. Aquí puedes describir algo importante o destacar información relevante.
+      </p>
+      <p>
+        Bootstrap facilita la creación de diseños responsivos y atractivos para que tu contenido se vea bien en cualquier dispositivo.
+      </p>
+    </div>
+
+    <!-- Columna Derecha -->
+    <div class="col-md-6">
+      <img id="figurita" src="/img/img01.jpeg" alt="Imagen de ejemplo" height="500" width="300"  class="img-fluid rounded">
+    </div>
+  </div>
+</div>
+<!--atractivos -->
+<div class="container my-5">
+  <div class="row g-4" id="fila">
+    <!-- Atractivo 1 -->
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/img/img01.jpeg" class="card-img-top" alt="Lugar emblemático">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Lugar Emblemático</h5>
+          <p class="card-text">
+            Este lugar es el corazón cultural de [Nombre de la Ciudad]. Su arquitectura histórica y su ambiente único lo convierten en una visita obligada.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">📍 Ubicación: Centro Histórico</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atractivo 2 
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/img/img02.jpeg" class="card-img-top" alt="Parque o espacio natural">
+        <div class="card-body">
+          <h5 class="card-title">Parque o Espacio Natural</h5>
+          <p class="card-text">
+            Un oasis en medio de la ciudad. Perfecto para relajarse, caminar entre la naturaleza o disfrutar de un picnic con vistas espectaculares.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">🌳 Actividades: Senderismo, fotografía, picnics</small>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/img/img03.jpeg" class="card-img-top" alt="Museo o centro cultural">
+        <div class="card-body">
+          <h5 class="card-title">Museo o Centro Cultural</h5>
+          <p class="card-text">
+            Descubre la historia y el arte de la ciudad en este emblemático museo. Exhibiciones permanentes y temporales para todos los gustos.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">🎨 Horarios: 10:00 AM - 6:00 PM</small>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+  <!-- comentarios -->
+  <div class="container mt-5">
+      <h2 class="mb-4">Comentarios de Visitantes</h2>
+      <div class="row">
+        {% for comment in locals['comments'] %}
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">{{comment['guest']}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{comment['date']}}</h6>
+                      <p class="card-text">{{comment['comment']}}</p>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="/js/home.js"></script>
+{% endblock %}

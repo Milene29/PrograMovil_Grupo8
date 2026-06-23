@@ -1,0 +1,70 @@
+{% extends './_website.html' %}
+{% block content %}
+  <div class="container my-5 contacto-container">
+    <div class="row align-items-center">
+      <!-- Texto a la izquierda -->
+      <div class="col-md-6">
+        <h1 class="fw-bold">Es momento de cambiar tu realidad.</h1>
+        <p class="lead">Sé un líder en el mercado laboral</p>
+      </div>
+      <!-- Formulario a la derecha -->
+      <div class="col-md-6">
+        <div class="form-section">
+          <form>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombres*</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Nombres" required>
+            </div>
+            <div class="mb-3">
+              <label for="apellidos" class="form-label">Apellidos*</label>
+              <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" required>
+            </div>
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo Electrónico*</label>
+              <input type="email" class="form-control" id="correo" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="mb-3">
+              <label for="celular" class="form-label">Celular*</label>
+              <input type="tel" class="form-control" id="celular" placeholder="Celular" required>
+            </div>
+            <div class="mb-3">
+              <label for="sede" class="form-label">Sede de interés*</label>
+              <select class="form-select" id="sede" required>
+                <option value="">Seleccionar</option>
+                <option value="sede1">Sede 1</option>
+                <option value="sede2">Sede 2</option>
+                <option value="sede3">Sede 3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="carrera" class="form-label">Carrera de interés*</label>
+              <select class="form-select" id="carrera" required>
+                <option value="">Seleccionar</option>
+                <option value="carrera1">Carrera 1</option>
+                <option value="carrera2">Carrera 2</option>
+                <option value="carrera3">Carrera 3</option>
+              </select>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="politicas" required>
+              <label class="form-check-label" for="politicas">
+                He leído y acepto las Políticas de Privacidad
+              </label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="publicidad">
+              <label class="form-check-label" for="publicidad">
+                Autorizo el envío de publicidad e información comercial.
+              </label>
+            </div>
+            <button type="submit" class="btn btn-success w-100">ENVIAR</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+ 
+{% block javascripts %}
+  <script src="/js/contacto.js"></script>
+{% endblock %}

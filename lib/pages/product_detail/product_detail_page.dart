@@ -110,7 +110,7 @@ class ProductDetailPage extends StatelessWidget {
       child: Image.network(
         imageUrl,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => const Center(
+        errorBuilder: (_, _, _) => const Center(
             child: Icon(Icons.coffee, size: 80, color: Colors.grey)),
       ),
     );
