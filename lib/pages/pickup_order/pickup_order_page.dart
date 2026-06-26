@@ -4,21 +4,37 @@ import '../menu/menu_page.dart';
 import '../carrito/cart_controller.dart';
 import 'pickup_order_controller.dart';
 
-class PickupOrderPage extends StatelessWidget {
+class PickupOrderPage extends StatefulWidget {
+  const PickupOrderPage({super.key});
 
-  PickupOrderPage({super.key});
+  @override
+  State<PickupOrderPage> createState() => _PickupOrderPageState();
+}
 
-  final PickupOrderController controller =
-      Get.put(PickupOrderController());
+class _PickupOrderPageState extends State<PickupOrderPage> {
+  final PickupOrderController controller = Get.put(PickupOrderController());
+  bool _orderCreated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Crear la orden en el backend automáticamente
+    _createOrder();
+  }
+
+  Future<void> _createOrder() async {
+    if (!_orderCreated) {
+      await controller.createOrder();
+      _orderCreated = true;
+    }
+  }
 
   static const Color primaryColor = Color(0xFF7A0C2E);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-
       appBar: AppBar(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
@@ -29,76 +45,133 @@ class PickupOrderPage extends StatelessWidget {
         ),
         title: const Text("Recoger Pedido"),
       ),
-
       body: Obx(
-        () => SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              _buildOrderCard(),
-
-              const SizedBox(height: 20),
-
-              _buildProgressCard(),
-
-              const SizedBox(height: 20),
-
-              _buildProductsCard(),
-
-              const SizedBox(height: 20),
-
-              _buildQrCard(),
-
-              const SizedBox(height: 20),
-
-              _buildLocationCard(),
-
-              const SizedBox(height: 30),
-
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Obtener el CartController y limpiar el carrito
-                    final cartController = Get.find<CartController>();
-                    cartController.clearCart();
-                    
-                    Get.snackbar(
-                      "Pedido",
-                      "Pedido recogido correctamente",
-                      backgroundColor: Colors.white,
-                      colorText: primaryColor,
-                    );
-                    Future.delayed(const Duration(seconds: 1), () {
-                      Get.offAll(() => MenuPage());
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+        () {
+          // Mostrar loading mientras se crea la orden
+          if (controller.isLoading.value && controller.orderId.value == null) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Creando tu orden...',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 16,
                     ),
                   ),
-                  child: const Text(
-                    "YA RECOGÍ MI PEDIDO",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                ],
+              ),
+            );
+          }
+
+          // Mostrar error si falló la creación
+          if (controller.errorMessage.value.isNotEmpty &&
+              controller.orderId.value == null) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.error_outline,
+                    size: 48,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Error: ${controller.errorMessage.value}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      _orderCreated = false;
+                      _createOrder();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
                     ),
+                    child: const Text('Reintentar'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          // Mostrar la orden si se creó exitosamente
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildOrderCard(),
+                const SizedBox(height: 20),
+                _buildProgressCard(),
+                const SizedBox(height: 20),
+                _buildProductsCard(),
+                const SizedBox(height: 20),
+                _buildQrCard(),
+                const SizedBox(height: 20),
+                _buildLocationCard(),
+                const SizedBox(height: 30),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: controller.isLoading.value
+                        ? null
+                        : () async {
+                            // Marcar como recogido
+                            await controller.markAsPickedUp();
+
+                            // Limpiar carrito
+                            final cartController = Get.find<CartController>();
+                            cartController.clearCart();
+
+                            // Esperar a que se actualice y volver al menu
+                            await Future.delayed(
+                              const Duration(seconds: 1),
+                              () {
+                                Get.offAll(() => MenuPage());
+                              },
+                            );
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      disabledBackgroundColor: Colors.grey.shade300,
+                    ),
+                    child: controller.isLoading.value
+                        ? const SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          )
+                        : const Text(
+                            "YA RECOGÍ MI PEDIDO",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 20),
-
-            ],
-          ),
-        ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
+        },
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
