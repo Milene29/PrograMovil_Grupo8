@@ -18,7 +18,7 @@ class MenuPage extends StatelessWidget {
   
   MenuPage({
     super.key,
-    required this.usuarioNombre});
+    this.usuarioNombre='Usuario'});
 
   @override
   Widget build(BuildContext context) {
