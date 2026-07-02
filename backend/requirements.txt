@@ -2,4 +2,5 @@ flask
 sqlalchemy
 Flask-Session
 flask-jwt-extended
-flask-cors
+flask-corspsycopg2-binary
+gunicorn

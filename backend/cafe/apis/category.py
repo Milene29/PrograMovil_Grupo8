@@ -1,6 +1,6 @@
 import traceback
 from flask import Blueprint, jsonify
-from biblio.models import Category
+from cafe.models import Category
 from main.database import Session
 
 api = Blueprint('cafe_apis_categories', __name__)

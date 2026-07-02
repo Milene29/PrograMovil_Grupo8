@@ -1,9 +1,9 @@
 from main.apis import api as main_apis
-from biblio.cafe_blueprints import blueprints as biblio_blueprints
+from cafe.cafe_blueprints import blueprints as cafe_blueprints
 
 def register(app):
   modules_blueprints = [
-    biblio_blueprints,
+    cafe_blueprints,
   ]
   app.register_blueprint(main_apis)
   for blueprints in modules_blueprints:

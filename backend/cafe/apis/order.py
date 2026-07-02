@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import verify_jwt_in_request, get_jwt
 from main.database import Session
-from biblio.models import Order, OrderItem
+from cafe.models import Order, OrderItem
 from sqlalchemy.orm import joinedload
 
 api = Blueprint('cafe_apis_orders', __name__)
@@ -218,76 +218,6 @@ def update_order_status(id):
     order.status = new_status
     session.commit()
 
-    order = session.query(Order).options(
-      joinedload(Order.items).joinedload(OrderItem.product)
-    ).filter(Order.id == order.id).first()
-
-    response = jsonify({
-      'message': f'Orden actualizada a {new_status}',
-      'data': order.to_dict(),
-      'success': True,
-      'error': None
-    })
-  except Exception as e:
-    session.rollback()
-    traceback.print_exc()
-    response = jsonify({
-      'message': 'Error al actualizar orden',
-      'error': str(e),
-      'data': None,
-      'success': False
-    })
-    status = 500
-  finally:
-    session.close()
-  return response, status
-
-@api.route('/apis/v1/orders/<int:id>/status', methods=['PUT'])
-@jwt_required
-def update_order_status(id):
-  response = None
-  status = 200
-  data = request.get_json()
-  
-  if not data or 'status' not in data:
-    return jsonify({
-      'message': 'Debe proporcionar un estado',
-      'data': None,
-      'success': False,
-      'error': 'Bad Request'
-    }), 400
-
-  session = Session()
-  try:
-    order = session.query(Order).filter(
-      Order.id == id,
-      Order.user_id == g.user_id
-    ).first()
-
-    if not order:
-      return jsonify({
-        'message': 'Orden no encontrada',
-        'data': None,
-        'success': False,
-        'error': 'Not Found'
-      }), 404
-
-    # Actualizar estado
-    valid_statuses = ['pendiente', 'preparando', 'listo', 'recogido', 'cancelado']
-    new_status = data['status'].lower()
-    
-    if new_status not in valid_statuses:
-      return jsonify({
-        'message': f'Estado inválido. Válidos: {", ".join(valid_statuses)}',
-        'data': None,
-        'success': False,
-        'error': 'Bad Request'
-      }), 400
-
-    order.status = new_status
-    session.commit()
-
-    # Recargar con relaciones
     order = session.query(Order).options(
       joinedload(Order.items).joinedload(OrderItem.product)
     ).filter(Order.id == order.id).first()

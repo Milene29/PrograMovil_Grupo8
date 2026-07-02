@@ -1,7 +1,7 @@
 import traceback
 from flask import Blueprint, jsonify, request
 from main.database import Session
-from biblio.models import User
+from cafe.models import User
 from flask_jwt_extended import create_access_token
 
 api = Blueprint('cafe_apis_users', __name__)

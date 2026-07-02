@@ -1,6 +1,6 @@
 import traceback
 from flask import Blueprint, jsonify, request
-from biblio.models import Product
+from cafe.models import Product
 from main.database import Session
 from sqlalchemy.orm import joinedload
 

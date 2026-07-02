@@ -2,7 +2,7 @@
 Ejecutar una sola vez para crear las tablas e insertar datos de ejemplo.
   python init_db.py
 """
-from biblio.models import Base, Category, Product, User
+from cafe.models import Base, Category, Product, User
 from main.database import engine, Session
 
 # Crear todas las tablas
